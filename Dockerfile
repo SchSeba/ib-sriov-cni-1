@@ -1,4 +1,4 @@
-FROM golang:1.25 AS builder
+FROM golang:1.26 AS builder
 
 COPY . /usr/src/ib-sriov-cni
 
@@ -18,7 +18,7 @@ RUN make clean && \
 
 # docker pull gcr.io/distroless/static-debian13
 # docker inspect --format='{{index .RepoDigests 0}}' gcr.io/distroless/static-debian13
-FROM gcr.io/distroless/static-debian13@sha256:972618ca78034aaddc55864342014a96b85108c607372f7cbd0dbd1361f1d841
+FROM gcr.io/distroless/static-debian13@sha256:4c2cd1dee442c9a99924a378c7c126fac8fef14771579ef567c3f2bdd7a5122a
 
 COPY --from=builder \
      /usr/src/ib-sriov-cni/build/ib-sriov \
